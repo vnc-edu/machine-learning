@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix, accuracy_score
 
 # Importing the dataset
@@ -19,9 +20,8 @@ sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
-# Training the Logistic Regression model on the Training set
-from sklearn.svm import SVC
-classifier = SVC(kernel='rbf', random_state=0)
+# Training the k neatest neighbour model on the Training set
+classifier = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2)
 classifier.fit(X_train, y_train)
 
 # Predicting a new result
@@ -38,8 +38,9 @@ print(np.concatenate((y_pred.reshape(len(y_pred), 1), y_test.reshape(len(y_test)
 
 # Making the Confusion Matrix
 cm = confusion_matrix(y_test, y_pred)
-print('Confusion Matrix')
+print('Confution Matrix')
 print(cm)
 print('Accuracy')
 ac = accuracy_score(y_test, y_pred)
 print(ac)
+

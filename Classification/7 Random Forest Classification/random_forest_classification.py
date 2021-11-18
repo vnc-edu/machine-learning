@@ -19,9 +19,9 @@ sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
-# Training the decision tree model on the Training set
-from sklearn.naive_bayes import GaussianNB
-classifier = GaussianNB()
+# Training the Random forest classifier model on the Training set
+from sklearn.ensemble import RandomForestClassifier
+classifier = RandomForestClassifier(n_estimators=10, criterion='entropy', random_state=0)
 classifier.fit(X_train, y_train)
 
 # Predicting a new result

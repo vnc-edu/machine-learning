@@ -20,7 +20,8 @@ sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
-# Training the k neatest neighbour model on the Training set
+# Training the k neatest neighbour model on the Training set , euclidean_distance for p=2 ,
+# https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html
 classifier = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2)
 classifier.fit(X_train, y_train)
 
@@ -38,7 +39,7 @@ print(np.concatenate((y_pred.reshape(len(y_pred), 1), y_test.reshape(len(y_test)
 
 # Making the Confusion Matrix
 cm = confusion_matrix(y_test, y_pred)
-print('Confution Matrix')
+print('Confusion Matrix')
 print(cm)
 print('Accuracy')
 ac = accuracy_score(y_test, y_pred)
